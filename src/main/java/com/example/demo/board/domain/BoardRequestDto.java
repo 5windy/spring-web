@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BoardRequestDto {
 
+    private long code;
     private String title;
     private String author;
     private String content;
