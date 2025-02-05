@@ -63,6 +63,18 @@ public class UserRestController {
         return ResponseEntity.ok(new UserResponseDto(user));
     }
 
+    @PutMapping({"", "/"})
+    public ResponseEntity<ResponseDto> updateUser(@RequestBody UserRequestDto userDto) {
+        boolean isSuccess = userService.updateUser(userDto);
+
+        if(!isSuccess)
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .body(new ResponseDto(HttpStatus.BAD_REQUEST.value(), "회원정보 수정에 실패하였습니다."));
+
+        return ResponseEntity.ok(new ResponseDto(HttpStatus.OK.value(), "회원정보가 성공적으로 수정되었습니다."));
+    }
+
     @DeleteMapping("/{username}")
     public ResponseEntity<ResponseDto> deleteUserByUsername(@PathVariable String username) {
         boolean isSuccess = userService.deleteUserByUsername(username);

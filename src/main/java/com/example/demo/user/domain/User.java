@@ -23,4 +23,8 @@ public class User extends Timestamp {
         this.password = password;
     }
 
+    public void update(UserRequestDto userDto) {
+        this.nickname = userDto.getNickname();
+    }
+
 }

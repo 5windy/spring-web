@@ -2,6 +2,8 @@ package com.example.demo.user.service;
 
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserRepository;
+import com.example.demo.user.domain.UserRequestDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,24 @@ public class UserService {
         return true;
     }
 
+    @Transactional
+    public boolean updateUser(UserRequestDto userDto) {
+        // 1. 요청객체의 정보(username, password)를 활용하여 -> entity 객체 조회
+        // 2. entity 객체의 값을 수정
+
+        String username = userDto.getUsername();
+        String password = userDto.getPassword();
+
+        User target = userRepository.findUserByUsernameAndPassword(username, password);
+
+        if(target == null)
+            return false;
+
+        target.update(userDto);
+        return true;
+    }
+
+    @Transactional
     public boolean deleteUserByUsername(String username) {
         User target = userRepository.findUserByUsername(username);
 
