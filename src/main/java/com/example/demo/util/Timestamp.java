@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @Getter
 @EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass
 public class Timestamp {
 
     @CreatedDate
