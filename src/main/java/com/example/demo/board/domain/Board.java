@@ -1,14 +1,13 @@
 package com.example.demo.board.domain;
 
+import com.example.demo.util.Timestamp;
 import jakarta.persistence.*;
 import lombok.Getter;
-
-import java.sql.Timestamp;
 
 @Getter
 @Entity
 @Table(name ="boards")
-public class Board {
+public class Board extends Timestamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +15,5 @@ public class Board {
     private long author;
     private String title;
     private String content;
-    private Timestamp regDate;
-    private Timestamp modDate;
 
 }

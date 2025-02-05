@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.board.domain.Board;
 import com.example.demo.board.domain.BoardInfo;
 import com.example.demo.board.domain.BoardRequestDto;
 import com.example.demo.board.domain.BoardResponseDto;

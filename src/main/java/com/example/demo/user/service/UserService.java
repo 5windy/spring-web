@@ -28,4 +28,25 @@ public class UserService {
 
         return user.get();
     }
+
+    public boolean createUser(User user) {
+        // username에 대한 중복 예외처리 후, 결과 반환
+        User target = userRepository.findUserByUsername(user.getUsername());
+
+        if(target != null)
+            return false;
+
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean deleteUserByUsername(String username) {
+        User target = userRepository.findUserByUsername(username);
+
+        if(target == null)
+            return false;
+
+        userRepository.delete(target);
+        return true;
+    }
 }

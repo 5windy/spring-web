@@ -17,6 +17,7 @@ public class UserResponseDto extends ResponseDto {
 
     private long code;
     private String username;
+    private String nickname;
     private Timestamp regDate;
     private Timestamp modDate;
 

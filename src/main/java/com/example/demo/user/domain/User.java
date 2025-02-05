@@ -1,21 +1,26 @@
 package com.example.demo.user.domain;
 
+import com.example.demo.util.Timestamp;
 import jakarta.persistence.*;
 import lombok.Getter;
-
-import java.sql.Timestamp;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends Timestamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long code;
     private String username;
     private String password;
-    private Timestamp regDate;
-    private Timestamp modDate;
+    private String nickname;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
 }
