@@ -82,6 +82,14 @@ public class UserRestController {
         return ResponseEntity.ok(new ResponseDto(HttpStatus.OK.value(), "성공적으로 로그인 되었습니다."));
     }
 
+    @GetMapping("/signout")
+    public ResponseEntity<ResponseDto> signout(HttpSession session) {
+        session.removeAttribute("authUser");
+        session.invalidate();
+
+        return ResponseEntity.ok(new ResponseDto(HttpStatus.OK.value(), "로그아웃 완료"));
+    }
+
     @GetMapping("/{code}")
     public ResponseEntity<ResponseDto> getUserByCode(@PathVariable long code) {
         UserResponseDto userDto = null;
