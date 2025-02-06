@@ -9,13 +9,21 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
-    <title>Sign in</title>
+    <script src="/script/signin.js"></script>
+    <link rel="stylesheet" href="/style/form.css">
+    <title>Sign up</title>
 </head>
 <c:import url="/header" />
 <body>
 <div id="content-container">
     <section>
         <h2>Sign in</h2>
+        <form method="POST" action="/users/signin">
+            <input type="text" name="username" id="username" placeholder="username">
+            <p id="error-msg-username" class="error-msg">*중복되는 아이디는 사용이 불가합니다.</p>
+            <input type="password" name="password" id="password" placeholder="password">
+            <input type="submit" value="Sign in">
+        </form>
     </section>
 </div>
 </body>
