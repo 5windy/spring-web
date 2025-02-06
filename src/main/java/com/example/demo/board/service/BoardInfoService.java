@@ -3,6 +3,7 @@ package com.example.demo.board.service;
 import com.example.demo.board.domain.BoardInfo;
 import com.example.demo.board.domain.BoardInfoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ public class BoardInfoService {
     private final BoardInfoRepository boardInfoRepository;
 
     public List<BoardInfo> findBoardInfoAll(Pageable pageable) {
-        List<BoardInfo> boards = boardInfoRepository.findAll(pageable).getContent();
+        Page<BoardInfo> page = boardInfoRepository.findAll(pageable);
+        List<BoardInfo> boards = page.getContent();
         return boards;
     }
 
