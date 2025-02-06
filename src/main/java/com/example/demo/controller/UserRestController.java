@@ -18,6 +18,20 @@ public class UserRestController {
 
     private final UserService userService;
 
+    // /users
+    // /users/
+    @GetMapping({"", "/"})
+//    public ResponseEntity<ResponseDto> checkUserIsExisted(@RequestParam String username) {
+    public ResponseEntity<ResponseDto> checkUserIsExisted(String username) {
+        User user = userService.findUserByUsername(username);
+
+        if(user == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
+                    .body(new ResponseDto(HttpStatus.NOT_FOUND.value(), "존재하지 않는 사용자입니다."));
+
+        return ResponseEntity.ok(new ResponseDto(HttpStatus.OK.value(), "확인되는 사용자입니다."));
+    }
+
     @PostMapping("/signup")
     public ResponseEntity<ResponseDto> signup(@RequestBody UserRequestDto userDto) {
         // 1. 요청 객체로부터 필요한 정보 얻기
