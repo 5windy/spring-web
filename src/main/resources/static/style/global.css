@@ -33,7 +33,7 @@ header {
 
 header,
 #content-container {
-    width: 80vh;
+    width: 80vw;
     max-width: 1440px;
     margin: auto;
 }
