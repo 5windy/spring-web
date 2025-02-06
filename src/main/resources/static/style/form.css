@@ -1,0 +1,23 @@
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+    gap: 10px;
+}
+
+input {
+    padding: 10px 15px;
+    outline: none;
+}
+
+.error-msg {
+    display: none;
+    color: red;
+    font-size: 0.7em;
+}
