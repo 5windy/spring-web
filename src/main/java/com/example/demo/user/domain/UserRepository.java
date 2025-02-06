@@ -14,6 +14,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     public User findUserByUsernameAndPassword(String username, String password);
 
+    public User findUserByNickname(String nickname);
+
     // select code from users where username=?1
     // 1) query creation 으로 생성 가능한지 여부 판단,
     // 2) 불가하다면 @Query 로 nativeQuery 작성해보기

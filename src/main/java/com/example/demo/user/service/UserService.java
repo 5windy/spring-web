@@ -35,6 +35,10 @@ public class UserService {
         return userRepository.findUserByUsername(username);
     }
 
+    public User findUserByNickname(String nickname) {
+        return userRepository.findUserByNickname(nickname);
+    }
+
     public boolean createUser(User user) {
         // username에 대한 중복 예외처리 후, 결과 반환
         User target = userRepository.findUserByUsername(user.getUsername());

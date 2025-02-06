@@ -6,7 +6,6 @@ import com.example.demo.user.domain.UserResponseDto;
 import com.example.demo.user.service.UserService;
 import com.example.demo.util.ResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +19,20 @@ public class UserRestController {
 
     // /users
     // /users/
-    @GetMapping({"", "/"})
-//    public ResponseEntity<ResponseDto> checkUserIsExisted(@RequestParam String username) {
-    public ResponseEntity<ResponseDto> checkUserIsExisted(String username) {
+    @GetMapping("/valid/username")
+    public ResponseEntity<ResponseDto> checkUserIsExisted(@RequestParam("value") String username) {
         User user = userService.findUserByUsername(username);
+
+        if(user == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
+                    .body(new ResponseDto(HttpStatus.NOT_FOUND.value(), "존재하지 않는 사용자입니다."));
+
+        return ResponseEntity.ok(new ResponseDto(HttpStatus.OK.value(), "확인되는 사용자입니다."));
+    }
+
+    @GetMapping("/valid/nickname")
+    public ResponseEntity<?> checkNickIsExisted(@RequestParam("value") String nickname) {
+        User user = userService.findUserByNickname(nickname);
 
         if(user == null)
             return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
