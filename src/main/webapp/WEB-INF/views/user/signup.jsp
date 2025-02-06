@@ -23,6 +23,7 @@
             <p id="error-msg-username" class="error-msg">*중복되는 아이디는 사용이 불가합니다.</p>
             <input type="password" name="password" id="password" placeholder="password">
             <input type="text" name="nickname" id="nickname" placeholder="nickname">
+            <p id="error-msg-nickname" class="error-msg">*이미 사용중인 닉네임입니다.</p>
             <input type="submit" value="Sign up">
         </form>
     </section>
