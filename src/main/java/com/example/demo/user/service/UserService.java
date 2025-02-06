@@ -35,6 +35,10 @@ public class UserService {
         return userRepository.findUserByUsername(username);
     }
 
+    public User findUserByUsernameAndPassword(String username, String password) {
+        return userRepository.findUserByUsernameAndPassword(username, password);
+    }
+
     public User findUserByNickname(String nickname) {
         return userRepository.findUserByNickname(nickname);
     }
@@ -77,4 +81,5 @@ public class UserService {
         userRepository.delete(target);
         return true;
     }
+
 }

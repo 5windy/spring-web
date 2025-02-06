@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.user.domain.AuthUser;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserRequestDto;
 import com.example.demo.user.domain.UserResponseDto;
 import com.example.demo.user.service.UserService;
 import com.example.demo.util.ResponseDto;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,9 +48,10 @@ public class UserRestController {
         // 1. 요청 객체로부터 필요한 정보 얻기
         String username = userDto.getUsername();
         String password = userDto.getPassword();
+        String nickname = userDto.getNickname();
 
         // 2. 데이터 삽입 요청을 하기 위한 Entity 객체 생성
-        User user = new User(username, password);
+        User user = new User(username, password, nickname);
 
         // 3. 서비스가 제공하는 삽입 처리 메소드 호출을 통해 저장
         boolean isSuccess = userService.createUser(user);
@@ -62,10 +65,21 @@ public class UserRestController {
     }
 
     @PostMapping("/signin")
-    public UserRequestDto signin(@RequestBody UserRequestDto userDto) {
-        System.out.println("username : " + userDto.getUsername());
-        System.out.println("password : " + userDto.getPassword());
-        return userDto;
+    public ResponseEntity<ResponseDto> signin(@RequestBody UserRequestDto userDto, HttpSession session) {
+
+        String username = userDto.getUsername();
+        String password = userDto.getPassword();
+
+        User user = userService.findUserByUsernameAndPassword(username, password);
+
+        if(user == null)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value())
+                    .body(new ResponseDto(HttpStatus.UNAUTHORIZED.value(), "인증되지 않은 사용자입니다."));
+
+        AuthUser authUser = new AuthUser(user.getCode(), user.getUsername(), user.getNickname());
+        session.setAttribute("authUser", authUser);
+
+        return ResponseEntity.ok(new ResponseDto(HttpStatus.OK.value(), "성공적으로 로그인 되었습니다."));
     }
 
     @GetMapping("/{code}")
