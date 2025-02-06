@@ -15,7 +15,7 @@
 <body>
 <div id="content-container">
     <section>
-        <h2>Hello Spring World!</h2>
+        <h2>Hello ${authUser.nickname}!</h2>
     </section>
 </div>
 </body>
