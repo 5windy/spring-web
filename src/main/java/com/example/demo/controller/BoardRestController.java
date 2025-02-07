@@ -18,7 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RequestMapping("/boards")
@@ -72,7 +74,7 @@ public class BoardRestController {
 //    }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getBoardAll(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false) Integer page) {
+    public ResponseEntity<?> getBoardAll(Pageable pageable, @RequestParam(required = false) Integer page) {
         // 1. 기본 페이징
 //        List<BoardInfo> list = boardInfoService.findBoardInfoAll(pageable);
 
@@ -80,15 +82,21 @@ public class BoardRestController {
 //        Pageable paging = pageable.withPage(page == null ? 0 : page - 1);
 
         // 3. 매뉴얼 설정
-        Pageable paging = PageRequest.of(page == null ? 0 : page - 1, 10, Sort.by(Sort.Direction.DESC, "regDate"));
+        Pageable paging = PageRequest.of(page == null ? 0 : page - 1, 5, Sort.by(Sort.Direction.DESC, "regDate"));
 
         List<BoardInfo> list = boardInfoService.findBoardInfoAll(paging);
+
+        int totalPages = boardInfoService.getTotalPages(paging);
 
         if(list.size() == 0)
             return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
                     .body(new ResponseDto(HttpStatus.NOT_FOUND.value(), "존재하지 않는 페이지입니다."));
 
-        return ResponseEntity.ok(list);
+        Map<String, Object> data = new HashMap<>();
+        data.put("boards", list);
+        data.put("totalPages", totalPages);
+
+        return ResponseEntity.ok(data);
     }
 
     @GetMapping("/detail/{code}")

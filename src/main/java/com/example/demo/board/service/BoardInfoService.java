@@ -22,6 +22,11 @@ public class BoardInfoService {
         return boards;
     }
 
+    public int getTotalPages(Pageable pageable) {
+        Page<BoardInfo> page = boardInfoRepository.findAll(pageable);
+        return page.getTotalPages();
+    }
+
     public BoardInfo findBoardInfoByCode(long code) {
         Optional<BoardInfo> boardInfo = boardInfoRepository.findById(code);
         return boardInfo.orElse(null);
