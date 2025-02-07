@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
-    <script src="/script/list.js"></script>
+<%--    <script src="/script/list.js"></script>--%>
     <link rel="stylesheet" href="/style/list.css">
     <title>Board List</title>
 </head>
@@ -17,7 +17,7 @@
 <body>
 <div id="content-container">
     <section>
-        <h2>List</h2>
+        <h2>List (${empty boards ? 0 : boards.size()})</h2>
         <div id="list-container">
             <div id="list-header" class="list-element">
                 <div class="title">제목</div>
@@ -25,13 +25,17 @@
                 <div class="reg-date">작성일</div>
                 <div class="mod-date">수정일</div>
             </div>
-            <div id="board-1" class="list-element">
-                <div class="title">조회된 게시물이 없습니다.</div>
-                <div class="author"></div>
-                <div class="reg-date"></div>
-                <div class="mod-date"></div>
-            </div>
-
+            <c:forEach var="board" items="${boards}">
+                <div id="board-${board.code}" class="list-element">
+                    <div class="title">${board.title}</div>
+                    <div class="author">${board.author}</div>
+                    <div class="reg-date">${board.regDate}</div>
+                    <div class="mod-date">${board.modDate}</div>
+                </div>
+            </c:forEach>
+            <c:forEach var="i" begin="0" end="${totalPages - 1}">
+                <a href="/boards?page=${i+1}">${i+1}</a>
+            </c:forEach>
         </div>
         <div id="nav-paging"></div>
     </section>
