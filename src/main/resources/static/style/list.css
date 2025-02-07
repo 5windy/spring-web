@@ -1,0 +1,27 @@
+#list-header {
+    border-top: solid var(--primary-color) 1px;
+    background-color: var(--secondary-color);
+}
+
+.list-element {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 10px;
+    text-align: center;
+    font-size: 0.8em;
+    border-bottom: solid var(--primary-color) 1px;
+}
+
+.list-element:not(#list-header):hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+.list-element > div {
+    padding: 10px;
+}
+
+.title {
+    width: 300px;
+}
+

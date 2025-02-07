@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
+    <script src="/script/list.js"></script>
+    <link rel="stylesheet" href="/style/list.css">
     <title>Board List</title>
 </head>
 <c:import url="/header" />
@@ -16,6 +18,22 @@
 <div id="content-container">
     <section>
         <h2>List</h2>
+        <div id="list-container">
+            <div id="list-header" class="list-element">
+                <div class="title">제목</div>
+                <div class="author">작성자</div>
+                <div class="reg-date">작성일</div>
+                <div class="mod-date">수정일</div>
+            </div>
+            <div id="board-1" class="list-element">
+                <div class="title">게시물 제목</div>
+                <div class="author">작성자</div>
+                <div class="reg-date">작성일</div>
+                <div class="mod-date">수정일</div>
+            </div>
+
+        </div>
+        <div id="nav-paging"></div>
     </section>
 </div>
 </body>
