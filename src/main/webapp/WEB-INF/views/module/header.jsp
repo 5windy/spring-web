@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/script/header.js"></script>
     <link rel="stylesheet" href="/style/global.css">
     <title>Demo Project</title>

@@ -41,3 +41,18 @@
     cursor: pointer;
 }
 
+.list-element:not(#list-header) .title {
+    text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+    .author,
+    .reg-date,
+    .mod-date {
+        display: none;
+    }
+
+    .list-element {
+        grid-template-columns: 1fr;
+    }
+}
