@@ -26,10 +26,10 @@
                 <div class="mod-date">수정일</div>
             </div>
             <div id="board-1" class="list-element">
-                <div class="title">게시물 제목</div>
-                <div class="author">작성자</div>
-                <div class="reg-date">작성일</div>
-                <div class="mod-date">수정일</div>
+                <div class="title">조회된 게시물이 없습니다.</div>
+                <div class="author"></div>
+                <div class="reg-date"></div>
+                <div class="mod-date"></div>
             </div>
 
         </div>

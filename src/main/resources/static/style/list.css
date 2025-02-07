@@ -1,3 +1,8 @@
+#list-container {
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+
 #list-header {
     border-top: solid var(--primary-color) 1px;
     background-color: var(--secondary-color);
@@ -23,5 +28,16 @@
 
 .title {
     width: 300px;
+}
+
+#nav-paging {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.8em;
+}
+
+#nav-paging > span:hover {
+    cursor: pointer;
 }
 
